@@ -1,6 +1,8 @@
+/* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
 
 @layer base {
   :root {
@@ -13,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
 
-    --primary: 240, 80%, 70%;
+    --primary: 214 100% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
@@ -22,20 +24,22 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 200, 80%, 70%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 200 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 240, 80%, 70%;
+    --ring: 214 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --bg-gradient-start-light: hsl(240, 100%, 98%);
-    --bg-gradient-end-light: hsl(200, 100%, 98%);
+    --health-blue: 214 100% 50%;
+    --health-blue-light: 214 100% 95%;
+    --health-gradient-start: 214 100% 50%;
+    --health-gradient-end: 200 100% 60%;
   }
 
   .dark {
@@ -48,8 +52,8 @@
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 240, 80%, 80%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 214 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -57,29 +61,49 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 200, 80%, 80%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 200 100% 70%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 240, 80%, 80%;
+    --ring: 214 100% 60%;
 
-    --bg-gradient-start-dark: hsl(240, 20%, 15%);
-    --bg-gradient-end-dark: hsl(200, 20%, 15%);
+    --health-blue: 214 100% 60%;
+    --health-blue-light: 214 50% 20%;
+    --health-gradient-start: 214 100% 60%;
+    --health-gradient-end: 200 100% 70%;
+  }
+
+  * {
+    @apply border-border;
   }
 
   body {
-    @apply font-sans antialiased;
-    background: linear-gradient(135deg, var(--bg-gradient-start-light), var(--bg-gradient-end-light));
+    @apply bg-background text-foreground font-sans antialiased;
+    background: linear-gradient(135deg, hsl(var(--health-gradient-start)), hsl(var(--health-gradient-end)));
     background-attachment: fixed;
+    min-height: 100vh;
   }
+}
 
-  .dark body {
-    background: linear-gradient(135deg, var(--bg-gradient-start-dark), var(--bg-gradient-end-dark));
-    background-attachment: fixed;
+@layer components {
+  .health-gradient {
+    background: linear-gradient(135deg, hsl(var(--health-gradient-start)), hsl(var(--health-gradient-end)));
+  }
+  
+  .health-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  
+  .health-button {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+  
+  .portal-card {
+    @apply health-card p-8 hover:scale-105 cursor-pointer;
   }
 }
 
@@ -94,6 +118,7 @@
     overflow: hidden;
     z-index: 9999;
   }
+
   .confetti {
     position: absolute;
     width: 10px;
@@ -103,5 +128,17 @@
     opacity: 0;
     transform-origin: center;
     border-radius: 50%;
+  }
+
+  @keyframes confetti {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(360deg);
+    }
   }
 }

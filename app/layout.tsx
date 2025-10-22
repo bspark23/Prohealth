@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from 'next/font/google';
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -10,18 +10,25 @@ import { AudioPlayer } from "@/components/audio-player"; // Import AudioPlayer
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mindful Journal",
-  description: "Your personal mental health journal with AI support.",
+  title: "PropHealth",
+  description: "Secure healthcare records for Africa.",
   manifest: "/manifest.json",
-  themeColor: "#E0E7FF",
   appleWebAppCapable: "yes",
   appleWebAppStatusBarStyle: "default",
-  appleWebAppTitle: "Mindful Journal",
+  appleWebAppTitle: "PropHealth",
   formatDetection: {
     telephone: false,
   },
-  viewport: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   generator: 'v0.dev'
+};
+
+export const viewport: Viewport = {
+  themeColor: "#E0E7FF",
+  minimumScale: 1,
+  initialScale: 1,
+  width: "device-width",
+  shrinkToFit: "no",
+  viewportFit: "cover"
 };
 
 export default function RootLayout({

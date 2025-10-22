@@ -2,14 +2,47 @@
 
 import { Button } from '@/components/ui/button';
 import { Sun, Moon } from 'lucide-react';
-import { useTheme } from '@/components/providers/theme-provider';
+import { useState, useEffect } from 'react';
 
 export function ThemeToggle() {
-const { theme, setTheme } = useTheme();
+const [theme, setThemeState] = useState<'light' | 'dark'>('light');
+const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  setMounted(true);
+  // Simple theme detection for demo
+  const isDark = document.documentElement.classList.contains('dark');
+  setThemeState(isDark ? 'dark' : 'light');
+}, []);
 
 const toggleTheme = () => {
-  setTheme(theme === 'light' ? 'dark' : 'light');
+  const newTheme = theme === 'light' ? 'dark' : 'light';
+  setThemeState(newTheme);
+  
+  if (newTheme === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+  
+  // Save to localStorage
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('mental_health_theme', newTheme);
+  }
 };
+
+if (!mounted) {
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      aria-label="Toggle theme"
+      className="transition-transform duration-300 hover:scale-110"
+    >
+      <Sun className="h-[1.2rem] w-[1.2rem]" />
+    </Button>
+  );
+}
 
 return (
   <Button
@@ -20,9 +53,9 @@ return (
     className="transition-transform duration-300 hover:scale-110"
   >
     {theme === 'light' ? (
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-text-light dark:text-text-dark" />
+      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
     ) : (
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-text-light dark:text-text-dark" />
+      <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
     )}
     <span className="sr-only">Toggle theme</span>
   </Button>

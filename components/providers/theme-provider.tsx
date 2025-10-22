@@ -13,18 +13,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
 const [theme, setThemeState] = useState<Theme>('light');
+const [mounted, setMounted] = useState(false);
 
 useEffect(() => {
-  const storedTheme = getTheme();
-  setThemeState(storedTheme);
-  document.documentElement.classList.add(storedTheme);
+  setMounted(true);
+  if (typeof window !== 'undefined') {
+    const storedTheme = getTheme();
+    setThemeState(storedTheme);
+    document.documentElement.classList.add(storedTheme);
+  }
 }, []);
 
 const setTheme = (newTheme: Theme) => {
-  document.documentElement.classList.remove(theme);
-  document.documentElement.classList.add(newTheme);
-  saveTheme(newTheme);
-  setThemeState(newTheme);
+  if (typeof window !== 'undefined') {
+    document.documentElement.classList.remove(theme);
+    document.documentElement.classList.add(newTheme);
+    saveTheme(newTheme);
+    setThemeState(newTheme);
+  }
 };
 
 return (
