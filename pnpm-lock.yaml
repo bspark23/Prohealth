@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@radix-ui/react-accordion':
+    specifier: 1.2.1
+    version: 1.2.1(@types/react-dom@19.0.2)(@types/react@19.0.2)(react-dom@19.1.1)(react@19.1.1)
   '@radix-ui/react-dialog':
     specifier: 1.1.4
     version: 1.1.4(@types/react-dom@19.0.2)(@types/react@19.0.2)(react-dom@19.1.1)(react@19.1.1)
@@ -53,6 +56,9 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7
+  uuid:
+    specifier: ^10.0.0
+    version: 10.0.0
 
 devDependencies:
   '@types/node':
@@ -64,6 +70,12 @@ devDependencies:
   '@types/react-dom':
     specifier: ^19
     version: 19.0.2
+  '@types/uuid':
+    specifier: ^10.0.0
+    version: 10.0.0
+  autoprefixer:
+    specifier: ^10.4.20
+    version: 10.4.20
   postcss:
     specifier: ^8.5
     version: 8.5.1
@@ -79,6 +91,15 @@ packages:
   /@babel/core@7.28.3:
     resolution: {integrity: sha512-7+Ey1mAgYqFAx2h0RuoxcQT5+MlG3GTV0TQrgr7/ZliKsm/MNDxVVutlWaziMq7wJNAz8MTqz55XLpWvva6StA==}
     engines: {node: '>=6.9.0'}
+    dev: false
+
+  /@radix-ui/react-accordion@1.2.1:
+    resolution: {integrity: sha512-bg/l7l5QzUjgsh8kjwDFommzAshnUsuVMV5NM56QVs1Cv9fHHSIIQvEkp8QAbXbwWzDc4gWXESD9pOFDYOLgkw==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
     dev: false
 
   /@radix-ui/react-dialog@1.1.4:
@@ -137,6 +158,11 @@ packages:
       tailwindcss: '>=3.0.0 || insiders'
     dev: false
 
+  /uuid@10.0.0:
+    resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
+    hasBin: true
+    dev: false
+
   /@types/node@22.10.2:
     resolution: {integrity: sha512-Xxr6BBRCAOQixvonOye19wnzyDiUtTeqldOOmj3CkeblonbccA12PFwlufvRdrpjXxqnmUaeiU5EOA+7s5diUQ==}
     dev: true
@@ -147,6 +173,16 @@ packages:
 
   /@types/react-dom@19.0.2:
     resolution: {integrity: sha512-c2UnPv548q+5DFh+Z7zNT0ykAX7E+Jw/R3+Pcv3/Q4KGrPHC4J2MvLtEn2lDCqcybWvQg/T8rKJ0Wn1Qf0wOQ==}
+    dev: true
+
+  /@types/uuid@10.0.0:
+    resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
+    dev: true
+
+  /autoprefixer@10.4.20:
+    resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
     dev: true
 
   /postcss@8.5.1:
