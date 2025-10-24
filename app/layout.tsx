@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
-  generator: 'v0.dev'
+  generator: 'ProHealth'
 };
 
 export const viewport: Viewport = {
